@@ -1,0 +1,151 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,2012,115
+ PRODUCTVERSION 0,2,2008,1207
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "CompanyName", "."
+            VALUE "FileDescription", "KoFilter"
+            VALUE "FileVersion", "1, 0, 2012, 115"
+            VALUE "InternalName", "KoFilter"
+            VALUE "LegalCopyright", "Copyright ⓒ 2009"
+            VALUE "OriginalFilename", "KoFilter.dll"
+            VALUE "ProductName", ". KoFilter"
+            VALUE "ProductVersion", "0, 2, 2008, 1207"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTIONDIALOG DIALOGEX 0, 0, 167, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_NOINHERITLAYOUT
+CAPTION "KoFilter"
+FONT 9, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,79,180,40,13
+    PUSHBUTTON      "취소",IDCANCEL,120,180,40,13
+    CONTROL         "Slider1",IDC_SETTINGSLIDER,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,42,15,78,20
+    CTEXT           "완화",IDC_STATIC,24,17,16,20,SS_CENTERIMAGE
+    CTEXT           "엄격",IDC_STATIC,122,17,16,20,SS_CENTERIMAGE
+    CTEXT           "설명부입니다.",IDC_SETTINGSTATIC,12,38,145,13,SS_CENTERIMAGE
+    CONTROL         "로마숫자 사용안함",IDC_NOROMANCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,56,94,15
+    CONTROL         "원문자 사용안함",IDC_NOROUNDCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,69,108,15
+    CTEXT           "제작자 정보란",IDC_INFOSTATIC,9,140,145,32
+    GROUPBOX        "기본 설정",IDC_STATIC,7,7,153,80
+    GROUPBOX        "정보",IDC_STATIC,7,131,153,46
+    GROUPBOX        "추가 설정",IDC_STATIC,7,90,153,39
+    LTEXT           "Deny",IDC_STATIC,17,107,17,8
+    EDITTEXT        IDC_Deny,36,105,40,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Allow",IDC_STATIC,88,107,21,8
+    EDITTEXT        IDC_Allow,108,105,40,12,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_OPTIONDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

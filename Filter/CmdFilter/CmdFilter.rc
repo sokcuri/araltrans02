@@ -1,0 +1,176 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTIONDIALOG DIALOG DISCARDABLE  0, 0, 307, 286
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CmdFilter"
+FONT 10, "굴림체"
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,250,7,50,14
+    PUSHBUTTON      "취소",IDCANCEL,250,24,50,14
+    CTEXT           "",IDC_INFOSTATIC,7,7,240,28
+    CONTROL         "덮어쓰기 모드 (ATCode와 동일하게 설정)",
+                    IDC_OVERWRITECHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    13,53,184,14
+    CONTROL         "공백문자 제거",IDC_REMOVESPACECHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,64,184,14
+    EDITTEXT        IDC_CUTSIZEEDIT,13,89,18,12,ES_AUTOHSCROLL
+    LTEXT           "바이트 이하의 Body는 번역 않음",IDC_STATIC,37,89,163,11,
+                    SS_CENTERIMAGE
+    CONTROL         "1바이트 문자를 2바이트 문자로 강제 변경",
+                    IDC_TWOBYTECHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    13,75,184,14
+    GROUPBOX        "기본 설정",IDC_STATIC,7,43,293,64
+    GROUPBOX        "고급 설정",IDC_STATIC,7,112,293,167
+    LTEXT           "다음 16진수 아스키 코드가 가리키는 문자가 있으면 번역 거부",
+                    IDC_STATIC,13,125,281,8
+    EDITTEXT        IDC_DENYEDIT,13,136,281,12,ES_AUTOHSCROLL
+    LTEXT           "다음 16진수 아스키 코드가 가리키는 문자는 Prefix로 취급",
+                    IDC_STATIC,13,151,281,8
+    EDITTEXT        IDC_PREINCEDIT,13,162,281,12,ES_AUTOHSCROLL
+    LTEXT           "다음 16진수 아스키 코드가 가리키는 문자는 Prefix로 취급하지 않음",
+                    IDC_STATIC,13,177,281,8
+    EDITTEXT        IDC_PREEXCEDIT,13,188,281,12,ES_AUTOHSCROLL
+    LTEXT           "다음 16진수 아스키 코드가 가리키는 문자는 Body로 취급",
+                    IDC_STATIC,13,204,281,8
+    EDITTEXT        IDC_BODYINCEDIT,13,215,281,12,ES_AUTOHSCROLL
+    LTEXT           "다음 16진수 아스키 코드가 가리키는 문자는 Body로 취급하지 않음",
+                    IDC_STATIC,13,230,281,8
+    EDITTEXT        IDC_BODYEXCEDIT,13,241,281,12,ES_AUTOHSCROLL
+    LTEXT           "※ 1바이트 코드는 2자리, 2바이트 코드는 4자리로 표기\r\n  예:  20,80AF,41-6F,A1A1-FEFE",
+                    IDC_STATIC,13,258,281,17
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_OPTIONDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 300
+        VERTGUIDE, 13
+        VERTGUIDE, 294
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 279
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,3,2008,807
+ PRODUCTVERSION 0,2,2008,704
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", ".\0"
+            VALUE "FileDescription", "CmdFilter\0"
+            VALUE "FileVersion", "0, 3, 2008, 807\0"
+            VALUE "InternalName", "CmdFilter\0"
+            VALUE "LegalCopyright", "Copyright ⓒ 2008\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CmdFilter.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", ". CmdFilter\0"
+            VALUE "ProductVersion", "0, 2, 2008, 704\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DenyWord", "DenyWord.vcproj", "{3BD86E7A-698F-4D44-8F11-DA3451A0181D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BD86E7A-698F-4D44-8F11-DA3451A0181D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3BD86E7A-698F-4D44-8F11-DA3451A0181D}.Debug|Win32.Build.0 = Debug|Win32
+		{3BD86E7A-698F-4D44-8F11-DA3451A0181D}.Release|Win32.ActiveCfg = Release|Win32
+		{3BD86E7A-698F-4D44-8F11-DA3451A0181D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,37 @@
+; AralGoodHook.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ATCTNR"
+
+; DESCRIPTION  'ATCTNR Windows Dynamic Link Library'
+
+SECTIONS
+
+  .ARALG READ WRITE SHARED
+  
+
+EXPORTS
+	SetupATContainer	@1
+
+	GetCurAlgorithm		@2
+	GetCurTranslator	@3
+
+	HookDllFunction		@4
+	HookDllFunctionEx	@5
+	UnhookDllFunction	@6
+	GetOrigDllFunction	@7
+	HookCodePoint		@8
+	HookCodePointEx		@9
+	UnhookCodePoint		@10
+
+	TranslateText		@11
+	
+	IsAppLocaleLoaded	@12
+	EnableAppLocale		@13
+
+	DllMain				@14
+	
+	SuspendAllThread	@15
+	ResumeAllThread		@16
+	IsAllThreadSuspended @17
+
+    ; Explicit exports can go here

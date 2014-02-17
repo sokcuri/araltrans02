@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ATJSAPI_Content.cpp">
+      <Filter>ATJSAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="ATJSAPI_JSWrapper.cpp">
+      <Filter>ATJSAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="v8Wrapper.cpp">
+      <Filter>JavaScript</Filter>
+    </ClCompile>
+    <ClCompile Include="JSCustom.cpp">
+      <Filter>JSCustom</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Opt</Filter>
+    </ClCompile>
+    <ClCompile Include="tstring.cpp">
+      <Filter>Opt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ATJSAPI.h">
+      <Filter>ATJSAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="v8Wrapper.h">
+      <Filter>JavaScript</Filter>
+    </ClInclude>
+    <ClInclude Include="JSCustom.h">
+      <Filter>JSCustom</Filter>
+    </ClInclude>
+    <ClInclude Include="DefATContainer.h">
+      <Filter>Opt</Filter>
+    </ClInclude>
+    <ClInclude Include="tstring.h">
+      <Filter>Opt</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Opt</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Opt</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Opt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JSCustom.def">
+      <Filter>JSCustom</Filter>
+    </None>
+    <None Include="res\JSCustom.rc2">
+      <Filter>JSCustom</Filter>
+    </None>
+    <None Include="ReadMe.txt">
+      <Filter>Opt</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ATJSAPI">
+      <UniqueIdentifier>{ff47c86d-6e67-4e49-94d3-163066cf9f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JavaScript">
+      <UniqueIdentifier>{cb9d7aef-0173-4b2b-83ab-6e951ecfa455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSCustom">
+      <UniqueIdentifier>{f5d5d3eb-2309-4b0b-9d02-1313ef0adcc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Opt">
+      <UniqueIdentifier>{2a973d4c-17c2-4b56-86df-3439abce2517}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JSCustom.rc">
+      <Filter>JSCustom</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

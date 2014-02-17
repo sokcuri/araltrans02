@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DumpText", "ATPlugin.vcproj", "{D7DE73F0-D33C-4E5F-B1A5-DD84BB1968FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release_UNICODE|Win32 = Release_UNICODE|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7DE73F0-D33C-4E5F-B1A5-DD84BB1968FE}.Release_UNICODE|Win32.ActiveCfg = Release_UNICODE|Win32
+		{D7DE73F0-D33C-4E5F-B1A5-DD84BB1968FE}.Release_UNICODE|Win32.Build.0 = Release_UNICODE|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

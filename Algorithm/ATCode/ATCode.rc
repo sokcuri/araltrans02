@@ -1,0 +1,395 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#include ""res\\ATCode.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2013,8,4,1
+ PRODUCTVERSION 2013,8,4,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "http://www.aralgood.com"
+            VALUE "CompanyName", "Aral Laboratory"
+            VALUE "FileDescription", "ATCode plug-in"
+            VALUE "FileVersion", "2013, 8, 4, 1"
+            VALUE "InternalName", "ATCode.dll"
+            VALUE "LegalCopyright", "Copyright (C) 2007 Aral Laboratory (http://www.aralgood.com)"
+            VALUE "LegalTrademarks", "http://www.aralgood.com"
+            VALUE "OriginalFilename", "ATCode.dll"
+            VALUE "ProductName", "ATCode plug-in"
+            VALUE "ProductVersion", "2013, 8, 4, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_OPTION DIALOGEX 0, 0, 500, 300
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AT Code Option"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,4,4,492,273
+    PUSHBUTTON      "옵션값 직접입력",IDC_BUTTON1,4,282,70,14
+    DEFPUSHBUTTON   "확 인",IDOK,320,282,55,14
+    PUSHBUTTON      "취 소",IDCANCEL,380,282,55,14
+    PUSHBUTTON      "적 용",IDAPPLY,440,282,55,14,WS_DISABLED
+END
+
+IDD_PAGE_HOOK DIALOGEX 0, 0, 487, 258
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_TRANS_ARGS,45,7,120,53,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "추가",IDC_BTN_ARG_ADD,173,7,30,12
+    PUSHBUTTON      "삭제",IDC_BTN_ARG_DEL,210,7,30,12,WS_DISABLED
+    CONTROL         "기존 방식 (복사 후 후킹방식)",IDC_RADIO_HOOK1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,40,115,10
+    CONTROL         "신형 방식 (원본에 직접 후킹방식)",IDC_RADIO_HOOK2,"Button",BS_AUTORADIOBUTTON,15,55,131,10
+    CONTROL         "UTF-16",IDC_CHK_UNICODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,163,40,39,10
+    CONTROL         "UTF-8",IDC_CHK_UNICODE8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,163,55,35,10
+    CONTROL         "문자열 길이 보정  :",IDC_CHK_USELEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,25,78,10
+    EDITTEXT        IDC_EDIT_LENPOS,333,24,139,12,ES_AUTOHSCROLL
+    CONTROL         "문자열 길이 끝에 종결문자 강제 삽입",IDC_CHK_LENEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,40,145,10
+    CONTROL         "번역 안함",IDC_RADIO_NOP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,251,75,50,10
+    CONTROL         "포인터 바꿔치기",IDC_RADIO_PTRCHANGE,"Button",BS_AUTORADIOBUTTON,251,90,74,10
+    CONTROL         "메모리 덮어쓰기",IDC_RADIO_OVERWRITE,"Button",BS_AUTORADIOBUTTON,251,105,75,10
+    CONTROL         "스마트 문자열",IDC_RADIO_SMSTR,"Button",BS_AUTORADIOBUTTON,251,120,75,10
+    CONTROL         "원본 백업 및 복구",IDC_CHK_PTRBACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,344,75,78,10
+    CONTROL         "버퍼크기 무시",IDC_CHK_IGNORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,344,90,65,10
+    CONTROL         "번역문을 원문 길이에 맞춤",IDC_CHK_MATCH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,344,105,109,10
+    CONTROL         "고정 포인터 형식",IDC_CHK_FORCEPTR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,344,120,75,10
+    CONTROL         "RealLive 엔진 방식",IDC_RADIO_SOW,"Button",BS_AUTORADIOBUTTON,251,150,77,10
+    CONTROL         "YU-RIS 엔진 방식",IDC_CHK_YURIS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,165,73,10
+    CONTROL         "WillPlus 엔진 방식",IDC_CHK_WILL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,180,75,10
+    CONTROL         "KiriKiri 엔진 방식 (TJS String)",IDC_CHK_TJSSTR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,195,107,10
+    CONTROL         "NitroPlus 엔진 방식 (테스트)",IDC_CHK_ENDPOS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,210,108,10
+    CONTROL         "NULL문자 확장 (UTF-32)",IDC_CHK_UNICODE2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,374,155,98,10
+    CONTROL         "문자 바이트 반전 (BE)",IDC_CHK_UNICODE3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,374,170,89,10
+    CONTROL         "개행문자로 분할 번역",IDC_CHK_SCRTRANS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,374,185,92,10
+    CONTROL         "중복 번역 검사",IDC_CHK_DUPLICATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,374,200,67,10
+    CONTROL         "공백문자 제거",IDC_CHK_REMOVE_SPACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,90,65,10
+    CONTROL         "문자와 문자 사이에 공백문자 강제삽입",IDC_CHK_ADDNULL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,105,148,10
+    CONTROL         "1바이트 문자를  2바이트 문자로 강제변환",IDC_CHK_TWOBYTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,120,159,10
+    CONTROL         "2바이트 문자 중  1바이트 문자로 변환 가능시 강제변환",IDC_CHK_ONEBYTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,135,206,10
+    CONTROL         "KiriKiri 이름 처리",IDC_CHK_KIRINAME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,150,69,10
+    CONTROL         "원본 텍스트를 클립보드로 복사",IDC_CHK_CLIP_JPN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,165,126,10
+    CONTROL         "번역된 텍스트를 클립보드로 복사",IDC_CHK_CLIP_KOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,180,133,10
+    CONTROL         "번역 시 일본어 텍스트의 유효성 검사",IDC_CHK_SAFE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,195,146,10
+    CONTROL         "메모리상의 동일한 텍스트는 모두 같이 번역",IDC_CHK_ALLSAMETEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,210,170,10
+    PUSHBUTTON      "이 후킹주소를 삭제",IDC_BTN_DEL_HOOK,200,234,86,14
+    GROUPBOX        "세부 조작 옵션",IDC_STATIC,336,60,144,75
+    LTEXT           "번역인자",IDC_STATIC,7,9,33,8
+    GROUPBOX        "번역 옵션",IDC_STATIC,7,75,233,150
+    GROUPBOX        "조작 방식",IDC_STATIC,243,60,90,75
+    GROUPBOX        "후킹 방식",IDC_STATIC,7,25,145,45
+    GROUPBOX        "문자셋 종류",IDC_STATIC,155,25,85,45
+    GROUPBOX        "문자열 길이 조작",IDC_STATIC,243,10,237,45
+    GROUPBOX        "엔진 별 전용 옵션",IDC_STATIC,243,140,120,85
+    GROUPBOX        "특수 조작 옵션",IDC_STATIC,366,140,114,85
+END
+
+IDD_PAGE_MAIN DIALOGEX 0, 0, 487, 258
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,83,20,94,18
+    EDITTEXT        IDC_EDIT_FONTDESC,80,64,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "글꼴",IDC_BTN_FONT,202,64,30,13
+    CONTROL         "폰트 크기 강제고정",IDC_CHK_FIX_SIZE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,80,80,10
+    CONTROL         "타이틀 및 메뉴 번역",IDC_CHK_UITRANS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,20,88,10
+    CONTROL         "후킹 지점을 상대 주소로 자동 변환",IDC_CHK_NOASLR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,35,141,10
+    CONTROL         "한글을 일본 문자셋으로 변환",IDC_CHK_ENCODEKOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,115,120,10
+    CONTROL         "문자 비교 함수를 일본 로켈로 고정",IDC_CHK_COMPAREJP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,130,137,10
+    CONTROL         "",IDC_SLIDER3,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,312,115,94,18
+    CONTROL         "",IDC_SLIDER2,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,83,180,94,18
+    PUSHBUTTON      "아랄트랜스 도움말",IDC_BTN_HELP,251,170,229,54
+    PUSHBUTTON      "후킹주소 추가",IDC_BTN_ADD_HOOK,200,234,86,14
+    GROUPBOX        "한글 폰트 로드",IDC_STATIC,7,7,233,91,BS_FLAT
+    LTEXT           "로드 안함",IDC_STATIC,43,23,40,8
+    LTEXT           "강제 로드",IDC_STATIC,183,23,41,8
+    CTEXT           "한글 폰트를 로드하지 않습니다.",IDC_FONT_DESC,40,45,180,8
+    CTEXT           "유니코드 KoFilter 사용하지 않습니다.",IDC_UNIKO_DESC,40,205,180,8
+    GROUPBOX        "유니코드 KoFilter",IDC_STATIC,7,167,233,58,BS_FLAT
+    GROUPBOX        "문자셋 및 코드페이지 설정",IDC_STATIC,7,102,473,61
+    CTEXT           "MultiByteToWideChar의 코드페이지를 변경하지 않습니다.",IDC_M2W_DESC,244,140,230,8
+    GROUPBOX        "기본 설정",IDC_STATIC,243,7,233,91,BS_FLAT
+    LTEXT           "폰트 설정",IDC_STATIC,15,66,40,8
+END
+
+IDD_DIALOG_NEW_HOOK DIALOGEX 0, 0, 130, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "새 후킹 주소 추가"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_HOOK_ADDR,47,19,79,12,ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BACK_ADDR,62,33,64,12,ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SUB_ADDR,47,47,79,12,ES_UPPERCASE | ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO1,47,4,79,102,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "확인",IDOK,24,72,38,14
+    PUSHBUTTON      "취소",IDCANCEL,68,72,36,14
+    LTEXT           "코드 주소",IDC_STATIC,4,21,35,8
+    LTEXT           "모듈 선택",IDC_STATIC,4,7,35,8
+    LTEXT           "복구 주소       +",IDC_STATIC,4,35,56,8
+    LTEXT           "예외 주소",IDC_STATIC,4,49,35,8
+    LTEXT           "└  ex. 40F050-420D10-...",IDC_STATIC,4,60,122,8
+END
+
+IDD_DIALOG_MEMORY DIALOGEX 0, 0, 148, 98
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "메모리 지정"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LIST1,3,4,79,90,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "직접입력",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,95,4,48,10
+    EDITTEXT        IDC_EDIT1,3,16,142,14,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    DEFPUSHBUTTON   "OK",IDOK,95,63,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,95,80,50,14
+    LTEXT           "레지스터: EAX~EDX, ESI, EDI, EBP, ESP \n사용가능기호: [],(),*,/,+,-,% \n16진수의 경우 반드시 0x를 붙여주세요",IDC_STATIC_CUSTOM,3,32,142,27,NOT WS_VISIBLE
+END
+
+IDD_DIALOG_STRING_INPUT DIALOGEX 0, 0, 270, 54
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AT Code Option String"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,50,15,200,12,ES_AUTOHSCROLL | NOT WS_BORDER
+    DEFPUSHBUTTON   "OK",IDOK,78,33,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,138,33,50,14
+    LTEXT           "/a:ATCode{",IDC_STATIC,7,15,40,8
+    LTEXT           "}",IDC_STATIC,255,15,8,8
+END
+
+IDD_DIALOG_MOD_INFO DIALOGEX 0, 0, 210, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "후킹 모듈 정보"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_MOD_NAME,48,16,150,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_MOD_RANGE,48,30,150,12,ES_AUTOHSCROLL | ES_READONLY
+    DEFPUSHBUTTON   "확인",IDOK,156,53,50,14
+    GROUPBOX        "코드정보",IDC_STATIC,4,3,202,47
+    LTEXT           "모듈범위",IDC_STATIC,12,32,33,8
+    CONTROL         "모듈명",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,12,18,25,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_OPTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 496
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 296
+    END
+
+    IDD_PAGE_HOOK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 480
+        VERTGUIDE, 15
+        VERTGUIDE, 155
+        VERTGUIDE, 163
+        VERTGUIDE, 240
+        VERTGUIDE, 243
+        VERTGUIDE, 251
+        VERTGUIDE, 336
+        VERTGUIDE, 344
+        VERTGUIDE, 366
+        VERTGUIDE, 374
+        VERTGUIDE, 472
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+        HORZGUIDE, 13
+        HORZGUIDE, 45
+        HORZGUIDE, 55
+        HORZGUIDE, 60
+        HORZGUIDE, 70
+        HORZGUIDE, 75
+        HORZGUIDE, 80
+        HORZGUIDE, 95
+        HORZGUIDE, 110
+        HORZGUIDE, 125
+        HORZGUIDE, 135
+        HORZGUIDE, 140
+        HORZGUIDE, 155
+        HORZGUIDE, 170
+        HORZGUIDE, 185
+        HORZGUIDE, 200
+        HORZGUIDE, 215
+        HORZGUIDE, 225
+        HORZGUIDE, 241
+    END
+
+    IDD_PAGE_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 480
+        VERTGUIDE, 15
+        VERTGUIDE, 130
+        VERTGUIDE, 232
+        VERTGUIDE, 240
+        VERTGUIDE, 243
+        VERTGUIDE, 251
+        VERTGUIDE, 359
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+        HORZGUIDE, 20
+        HORZGUIDE, 35
+        HORZGUIDE, 70
+        HORZGUIDE, 85
+        HORZGUIDE, 98
+        HORZGUIDE, 102
+        HORZGUIDE, 115
+        HORZGUIDE, 130
+        HORZGUIDE, 163
+        HORZGUIDE, 167
+        HORZGUIDE, 225
+    END
+
+    IDD_DIALOG_NEW_HOOK, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 126
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_DIALOG_MEMORY, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 145
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_DIALOG_STRING_INPUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        VERTGUIDE, 133
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 47
+        HORZGUIDE, 19
+    END
+
+    IDD_DIALOG_MOD_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 206
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE 18, 1
+#pragma code_page(949)
+#include "res\ATCode.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

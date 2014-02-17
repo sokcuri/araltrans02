@@ -1,0 +1,8 @@
+LIBRARY	"Cached"
+
+EXPORTS
+	OnPluginInit		@1
+	OnPluginOption		@2
+	OnPluginStart		@3
+	OnPluginStop		@4
+	OnPluginClose		@5

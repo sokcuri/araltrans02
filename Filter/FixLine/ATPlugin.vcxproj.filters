@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ATPlugin.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Dlg_AddFunc.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Dlg_AddName.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Dlg_AddSubFunc2.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionPage1.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionPage2.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionSheet.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="tstring.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SubFunc.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOptionParser.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="FixLine.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="FLString.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Migration.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ATPlugin.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Dlg_AddSubFunc2.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="Dlg_AddFunc.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="Dlg_AddName.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionPage2.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionPage1.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionSheet.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="tstring.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="SubFunc.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Migration.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOptionParser.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="FixLine.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="FLString.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ATPlugin.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ATPlugin.def" />
+    <None Include="res\ATPlugin.rc2" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Dialog">
+      <UniqueIdentifier>{56d3961c-51c4-44ef-ba04-81630b6f67ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{3059322a-bd94-4751-bfcf-53c65f41bc4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{4d561a9d-6d80-4653-9b14-b5af1023c86d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

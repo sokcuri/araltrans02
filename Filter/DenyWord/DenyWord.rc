@@ -1,0 +1,158 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,2013,105
+ PRODUCTVERSION 0,2,2008,1104
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "CompanyName", "."
+            VALUE "FileDescription", "DenyWord"
+            VALUE "FileVersion", "0, 1, 2013, 105"
+            VALUE "InternalName", "DenyWord"
+            VALUE "LegalCopyright", "Copyright ⓒ 2008"
+            VALUE "OriginalFilename", "DenyWord.dll"
+            VALUE "ProductName", ". DenyWord"
+            VALUE "ProductVersion", "0, 2, 2008, 1104"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 222, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DenyWord"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,110,105,50,14
+    PUSHBUTTON      "취소",IDCANCEL,165,105,50,14
+    CONTROL         "한자영역 체크 안함",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,45,84,10
+    EDITTEXT        IDC_EDIT1,80,76,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,69,77,11,14
+    GROUPBOX        "등록된 Word 수",IDC_STATIC,132,3,83,64
+    LTEXT           "Allow",IDC_STATIC,139,35,18,8
+    LTEXT           "Exact",IDC_STATIC,139,51,19,8
+    LTEXT           "Deny",IDC_STATIC,139,18,18,8
+    EDITTEXT        IDC_EDIT2,166,15,40,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT3,166,32,40,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_EDIT4,166,49,40,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    GROUPBOX        "설정",IDC_STATIC,7,3,121,95
+    GROUPBOX        "기타",IDC_STATIC,132,70,83,28
+    LTEXT           "다음 바이트 이하는 무시",IDC_STATIC,16,65,87,8
+    LTEXT           "( 0 : 사용 안함 )",IDC_STATIC,16,79,55,8
+    LTEXT           "일본어가 다음 % 이하면 무시",IDC_STATIC,16,17,104,8
+    LTEXT           "( 0 : 사용 안함 )",IDC_STATIC,15,31,55,8
+    EDITTEXT        IDC_EDIT5,80,29,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,70,28,10,14
+    LTEXT           "whoami, Hide_D君",IDC_STATIC,10,102,60,8
+    LTEXT           "지나가다정착한이A",IDC_STATIC,7,113,70,8
+    PUSHBUTTON      "열기",IDC_BUTTON1,179,81,28,12
+    LTEXT           "작업 폴더",IDC_STATIC,140,83,35,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 122
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

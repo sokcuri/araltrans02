@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ATPlugin", "ATPlugin.vcproj", "{D73677E2-3006-44A6-B902-BB36D88110F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_MBCS|Win32 = Debug_MBCS|Win32
+		Debug_UNICODE|Win32 = Debug_UNICODE|Win32
+		Release_MBCS|Win32 = Release_MBCS|Win32
+		Release_UNICODE|Win32 = Release_UNICODE|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Debug_MBCS|Win32.ActiveCfg = Debug_MBCS|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Debug_MBCS|Win32.Build.0 = Debug_MBCS|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Debug_UNICODE|Win32.ActiveCfg = Debug_UNICODE|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Debug_UNICODE|Win32.Build.0 = Debug_UNICODE|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Release_MBCS|Win32.ActiveCfg = Release_MBCS|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Release_MBCS|Win32.Build.0 = Release_MBCS|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Release_UNICODE|Win32.ActiveCfg = Release_UNICODE|Win32
+		{D73677E2-3006-44A6-B902-BB36D88110F5}.Release_UNICODE|Win32.Build.0 = Release_UNICODE|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

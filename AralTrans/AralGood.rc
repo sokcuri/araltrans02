@@ -1,0 +1,277 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AralGood.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ARALGOOD_DIALOG DIALOGEX 0, 0, 206, 337
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Aral Trans 0.2"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "실  행",IDC_BTN_HOOK,162,294,39,17
+    CONTROL         "List2",IDC_LIST2,"SysListView32",LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,5,93,196,195
+    PUSHBUTTON      "새로고침",IDC_BTN_REFRESH,56,294,39,17
+    CTEXT           "www.aralgood.com",IDC_STATIC_HOME,67,323,72,8,SS_NOTIFY
+    CTEXT           "",IDC_STATIC_VER,62,315,83,8
+    PUSHBUTTON      "설  정",IDC_BTN_OPTION,162,315,39,17
+    PUSHBUTTON      "정  보",IDC_BTN_ABOUT,5,315,39,17
+    CONTROL         "상세히",IDC_CHECK_EXPERT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,297,34,10
+    EDITTEXT        IDC_EDIT_BINARY,23,17,173,12,ES_UPPERCASE | ES_AUTOHSCROLL
+    LTEXT           "/b:",IDC_STATIC,12,19,11,8
+    EDITTEXT        IDC_DIR,11,54,144,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "찾아보기",IDC_BTN_DIR,157,51,39,17
+    CONTROL         "종료 후",IDC_CHECK_RESTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,112,297,34,10
+    GROUPBOX        "바이너리 수정",IDC_STATIC,5,5,196,32
+    GROUPBOX        "파일 위치",IDC_STATIC,5,42,196,32
+    CTEXT           "프로세스 목록",IDC_STATIC,73,80,60,8
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 255, 156
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,94,241,54,ES_MULTILINE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,7,7,241,54,ES_MULTILINE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Button1",IDC_BUTTON1,105,71,50,14
+END
+
+IDD_WAITING_DLG DIALOGEX 0, 0, 132, 198
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CAPTION "Waiting..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Static",IDC_STATIC_PIC,0,0,21,19
+    CTEXT           "0.0초 남았습니다.",IDC_STATIC_TIME,2,169,130,8
+    DEFPUSHBUTTON   "대기 종료",IDOK,39,181,55,13
+END
+
+IDD_OPTION_DIALOG DIALOGEX 0, 0, 277, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "설정"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,159,74,50,14
+    PUSHBUTTON      "취소",IDCANCEL,218,74,50,14
+    GROUPBOX        "자동 업데이트",IDC_STATIC,156,6,114,65
+    CONTROL         "사용하지 않음",IDC_RADIO_AUTOUPDATE0,"Button",BS_AUTORADIOBUTTON | WS_GROUP,161,17,102,13
+    CONTROL         "업데이트 여부를 확인함",IDC_RADIO_AUTOUPDATE1,"Button",BS_AUTORADIOBUTTON,161,35,102,13
+    CONTROL         "항상 업데이트함",IDC_RADIO_AUTOUPDATE2,"Button",BS_AUTORADIOBUTTON,161,53,102,13
+    GROUPBOX        "일반",IDC_STATIC,6,6,144,66
+    CONTROL         "ATData 보관소 사용",IDC_CHECK_USEATDATA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,18,132,12
+    CONTROL         "종료 후 ATData 폴더 정리",IDC_CHECK_DELETELOCALFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,24,36,120,12
+    CONTROL         "AppLocale 확인창 자동 확인",IDC_CHECK_APPLOCAUTOCONFIRM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,54,132,12
+END
+
+IDD_ABOUT_DIALOG DIALOGEX 0, 0, 316, 183
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AralTrans 정보"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_VERSIONINFO,10,20,297,140,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | WS_VSCROLL | WS_HSCROLL | NOT WS_TABSTOP
+    GROUPBOX        "버전 정보",IDC_GROUPBOX,7,7,302,154
+    DEFPUSHBUTTON   "확인",IDOK,258,162,50,14
+    PUSHBUTTON      "시스템 정보",IDC_CHANGEINFO_BUTTON,207,162,50,14
+    PUSHBUTTON      "저장...",IDC_SAVE_BUTTON,156,162,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2013,8,4,2
+ PRODUCTVERSION 2013,8,4,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "http://www.aralgood.com"
+            VALUE "CompanyName", "Aral Laboratory"
+            VALUE "FileDescription", "Aral Trans Application"
+            VALUE "FileVersion", "2013, 8, 4, 2"
+            VALUE "InternalName", "Aral Trans"
+            VALUE "LegalCopyright", "Copyright (C) 2007 Aral Laboratory (http://www.aralgood.com)"
+            VALUE "LegalTrademarks", "http://www.aralgood.com"
+            VALUE "OriginalFilename", "AralTrans.EXE"
+            VALUE "ProductName", "Aral Trans 0.2"
+            VALUE "ProductVersion", "2013, 8, 4, 2"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ARALGOOD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 201
+        VERTGUIDE, 103
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 332
+        HORZGUIDE, 25
+        HORZGUIDE, 302
+        HORZGUIDE, 323
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_WAITING_DLG, DIALOG
+    BEGIN
+        VERTGUIDE, 66
+    END
+
+    IDD_OPTION_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 270
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_ABOUT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        VERTGUIDE, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Icon5.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// GIFTYPE
+//
+
+IDR_GIF1                GIFTYPE                 "res\\d0013354_481f25a821d46.ani"
+#endif    // 한국어 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\AralGood.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

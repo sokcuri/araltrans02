@@ -1,0 +1,10 @@
+; TransCAT.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TransCAT"
+
+EXPORTS
+	DllMain			@1
+	OnPluginInit	@2
+	OnPluginOption	@3
+	OnPluginClose	@4
+	Translate		@5

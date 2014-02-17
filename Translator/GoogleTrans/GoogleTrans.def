@@ -1,0 +1,7 @@
+LIBRARY "GoogleTrans"
+EXPORTS
+    DllMain
+    OnPluginInit
+	OnPluginOption
+	OnPluginClose
+	Translate

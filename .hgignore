@@ -1,0 +1,19 @@
+syntax: glob
+*.aps
+*.bsc
+*.user
+*.pdb
+*.suo
+*.obj
+*.sdf
+*.sbr
+*.pch
+*.lib
+*/Debug/*
+*.ncb
+*.ilk
+*.idb
+*.exp
+*.dep
+*.ipch
+*/BuildLog.htm

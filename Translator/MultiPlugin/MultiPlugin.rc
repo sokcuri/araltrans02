@@ -1,0 +1,202 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTIONDIALOG DIALOG DISCARDABLE  0, 0, 250, 186
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "MultiPlugin"
+FONT 10, "굴림체"
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,190,163,53,16
+    CONTROL         "List1",IDC_PLUGINLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,15,18,221,62
+    PUSHBUTTON      "가장 위로",IDC_MOVETOPBUTTON,15,83,53,16
+    PUSHBUTTON      "위로",IDC_MOVEUPBUTTON,71,83,53,16
+    PUSHBUTTON      "아래로",IDC_MOVEDOWNBUTTON,127,83,53,16
+    PUSHBUTTON      "가장 아래로",IDC_MOVEBOTTOMBUTTON,183,83,53,16
+    PUSHBUTTON      "설정",IDC_OPTIONBUTTON,15,101,53,16
+    PUSHBUTTON      "추가...",IDC_ADDBUTTON,71,101,53,16
+    PUSHBUTTON      "삭제",IDC_REMOVEBUTTON,126,101,53,16
+    PUSHBUTTON      "직접 입력",IDC_DIRECTOPTIONBUTTON,7,163,53,16
+    CTEXT           "MultiPlugin",IDC_INFOSTATIC,64,163,123,16,
+                    SS_CENTERIMAGE
+    GROUPBOX        "필터 플러그인",IDC_STATIC,7,7,236,116
+    GROUPBOX        "번역 플러그인",IDC_STATIC,7,129,236,30
+    COMBOBOX        IDC_TRANSLATORCOMBO,14,140,82,71,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TRANSLATOROPTIONEDIT,100,140,80,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "설정",IDC_TRANSLATOROPTIONBUTTON,183,140,53,12
+END
+
+IDD_ADDPLUGINDIALOG DIALOG DISCARDABLE  0, 0, 187, 121
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "플러그인 추가"
+FONT 10, "굴림체"
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,130,7,50,14
+    PUSHBUTTON      "취소",IDCANCEL,130,24,50,14
+    LISTBOX         IDC_ADDPLUGINLIST,7,7,121,82,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "플러그인 중복 추가 허용",IDC_REDUNDANTCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,100,173,14
+END
+
+IDD_DIRECTOPTIONDIALOG DIALOG DISCARDABLE  0, 0, 267, 87
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "옵션 직접입력"
+FONT 10, "굴림체"
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,194,66,32,14
+    PUSHBUTTON      "취소",IDCANCEL,228,66,32,14
+    LTEXT           "※ 주의: ① 옵션 직접입력시 모든 플러그인이 초기화됩니다.\r\n　 　　  ② 옵션에 빈칸은 사용할 수 없습니다.\r\n　 　　  ③ 마지막 플러그인은 번역 플러그인입니다.\r\n\r\n　 형식: 필터1{옵션1},필터2{옵션2},번역플러그인{번역옵션}",
+                    IDC_STATIC,7,7,253,48
+    EDITTEXT        IDC_DIRECTOPTIONEDIT,7,66,184,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_OPTIONDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_ADDPLUGINDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_DIRECTOPTIONDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 80
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,2008,810
+ PRODUCTVERSION 0,2,2008,703
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", ".\0"
+            VALUE "FileDescription", "MultiPlugin\0"
+            VALUE "FileVersion", "2, 0, 2008, 810\0"
+            VALUE "InternalName", "MultiPlugin\0"
+            VALUE "LegalCopyright", "Copyright ⓒ 2008 by whoami under GPL\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "MultiPlugin.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", ". MultiPlugin\0"
+            VALUE "ProductVersion", "0, 2, 2008, 703\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
