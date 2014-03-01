@@ -4,6 +4,7 @@
 #include "OptionMgr.h"
 #include "CharacterMapper.h"
 #include "TransScriptParser.h"
+#include "ATCodeMgr.h"
 
 #include "Debug.h"
 
@@ -403,6 +404,15 @@ void CTransCommand::SetUpTextPoint(void *pBackUp, void *pArgText, void *ppArgTex
 BOOL CTransCommand::IsValidTextPoint(void *pArgText, long nSize)
 {
 	BOOL bRet = TRUE;
+	CCharacterMapper *pcCharMap = NULL;
+
+	if (CATCodeMgr::GetInstance()->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::GetInstance()->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 	NOTIFY_DEBUG_MESSAGE(_T("IsValidTextPoint: called, pArgText=%p, *pArgText=%08X\n"),pArgText, *(DWORD *) pArgText);
 
@@ -418,8 +428,9 @@ BOOL CTransCommand::IsValidTextPoint(void *pArgText, long nSize)
 			bRet = FALSE;
 
 		// 잘못된 텍스트인가?
-		if(m_bSafe && CCharacterMapper::IsShiftJISText((LPCSTR)pArgText) == FALSE)
+		if(m_bSafe && pcCharMap->IsShiftJISText((LPCSTR)pArgText) == FALSE)
 		{
+			delete pcCharMap;
 			TRACE(_T("[aral1] ◆Bad Text \n"));
 			throw -4; //_T("일본어 텍스트가 아닙니다.");
 		}
@@ -428,7 +439,7 @@ BOOL CTransCommand::IsValidTextPoint(void *pArgText, long nSize)
 	}
 	
 	NOTIFY_DEBUG_MESSAGE(_T("IsValidTextPoint: return %s\n"), (bRet?_T("TRUE"):_T("FALSE")) );
-
+	if (pcCharMap) delete pcCharMap;
 	return bRet;
 }
 

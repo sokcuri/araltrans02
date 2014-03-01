@@ -63,8 +63,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2013,8,4,1
- PRODUCTVERSION 2013,8,4,1
+ FILEVERSION 2014,2,27,1
+ PRODUCTVERSION 2014,2,27,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -82,13 +82,13 @@ BEGIN
             VALUE "Comments", "http://www.aralgood.com"
             VALUE "CompanyName", "Aral Laboratory"
             VALUE "FileDescription", "ATCode plug-in"
-            VALUE "FileVersion", "2013, 8, 4, 1"
+            VALUE "FileVersion", "2014, 2, 27, 1"
             VALUE "InternalName", "ATCode.dll"
             VALUE "LegalCopyright", "Copyright (C) 2007 Aral Laboratory (http://www.aralgood.com)"
             VALUE "LegalTrademarks", "http://www.aralgood.com"
             VALUE "OriginalFilename", "ATCode.dll"
             VALUE "ProductName", "ATCode plug-in"
-            VALUE "ProductVersion", "2013, 8, 4, 1"
+            VALUE "ProductVersion", "2014, 2, 27, 1"
         END
     END
     BLOCK "VarFileInfo"
@@ -178,7 +178,7 @@ BEGIN
     CONTROL         "타이틀 및 메뉴 번역",IDC_CHK_UITRANS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,20,88,10
     CONTROL         "후킹 지점을 상대 주소로 자동 변환",IDC_CHK_NOASLR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,251,35,141,10
     CONTROL         "한글을 일본 문자셋으로 변환",IDC_CHK_ENCODEKOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,115,120,10
-    CONTROL         "문자 비교 함수를 일본 로켈로 고정",IDC_CHK_COMPAREJP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,130,137,10
+    CONTROL         "문자 비교 함수를 일본 로켈로 고정",IDC_CHK_COMPAREJP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,145,137,10
     CONTROL         "",IDC_SLIDER3,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,312,115,94,18
     CONTROL         "",IDC_SLIDER2,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,83,180,94,18
     PUSHBUTTON      "아랄트랜스 도움말",IDC_BTN_HELP,251,170,229,54
@@ -193,6 +193,8 @@ BEGIN
     CTEXT           "MultiByteToWideChar의 코드페이지를 변경하지 않습니다.",IDC_M2W_DESC,244,140,230,8
     GROUPBOX        "기본 설정",IDC_STATIC,243,7,233,91,BS_FLAT
     LTEXT           "폰트 설정",IDC_STATIC,15,66,40,8
+    CONTROL         "타입 1 (기존)",IDC_RADIO_ENCODEKOR1,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,27,130,85,8
+    CONTROL         "타입 2 (신형)",IDC_RADIO_ENCODEKOR2,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,130,130,85,8
 END
 
 IDD_DIALOG_NEW_HOOK DIALOGEX 0, 0, 130, 90
@@ -327,6 +329,7 @@ BEGIN
         HORZGUIDE, 102
         HORZGUIDE, 115
         HORZGUIDE, 130
+        HORZGUIDE, 145
         HORZGUIDE, 163
         HORZGUIDE, 167
         HORZGUIDE, 225

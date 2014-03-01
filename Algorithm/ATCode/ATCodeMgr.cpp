@@ -14,6 +14,17 @@
 
 #include "Debug.h"
 
+/*
+** EncodeKor 처리 방식을 손보는 과정에서 필요 없어진 것으로 보임
+
+const WORD ko_char_map[] = {
+	0x9C9A,	//넑
+	0x9C86,	//슌
+	0xAF8B,	//떙
+	0x0000
+};
+*/
+
 CATCodeMgr*	CATCodeMgr::_Inst = NULL;
 
 CATCodeMgr* CATCodeMgr::GetInstance()
@@ -30,7 +41,7 @@ CATCodeMgr::CATCodeMgr(void)
 	m_hContainer(NULL), 
 	m_hContainerWnd(NULL), 
 	m_szOptionString(NULL), 
-	m_bEncodeKorean(FALSE),
+	m_nEncodeKorean(0),
 	m_bUITrans(FALSE),
 	m_bNoAslr(FALSE),
 	m_bRunClipboardThread(FALSE),
@@ -601,7 +612,7 @@ void CATCodeMgr::ResetOption()
 	m_nFontLoadLevel = 0;
 	m_nUniKofilterLevel = 0;
 	m_nM2WLevel = 0;
-	m_bEncodeKorean = FALSE;	
+	m_nEncodeKorean = 0;	
 	m_bUITrans = FALSE;	
 	m_bNoAslr = FALSE;	
 	m_bFixedFontSize = FALSE;
@@ -888,7 +899,16 @@ BOOL CATCodeMgr::AdjustOption(COptionNode* pRootNode)
 		// ENCODEKOR 옵션
 		else if(strValue == _T("ENCODEKOR"))
 		{
-			m_bEncodeKorean = TRUE;
+
+			if (pNode->GetChildCount())
+			{
+				COptionNode* pLevelNode = pNode->GetChild(0);
+				m_nEncodeKorean = _ttoi(pLevelNode->GetValue().Trim());
+			}
+			else
+				m_nEncodeKorean = 1;
+
+			NOTIFY_DEBUG_MESSAGE(_T("ENCODEKOR(%d)\r\n"), m_nEncodeKorean);
 		}
 		// UITRANS 옵션
 		else if(strValue == _T("UITRANS"))
@@ -1208,6 +1228,15 @@ DWORD __stdcall CATCodeMgr::NewGetGlyphOutlineA(
 {	
 	HFONT hOrigFont = NULL;
 	char chArray[10] = {0,};
+	CCharacterMapper *pcCharMap = NULL;
+
+	if (CATCodeMgr::_Inst->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::_Inst->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 	// char 배열에 문자 넣음
 	size_t i,j;
@@ -1228,36 +1257,62 @@ DWORD __stdcall CATCodeMgr::NewGetGlyphOutlineA(
 		hOrigFont = CATCodeMgr::_Inst->CheckFont(hdc);
 	}
 
+	UINT nCodePage = 932;
 	if(CATCodeMgr::_Inst && CATCodeMgr::_Inst->m_bRunning)
 	{
 		// 한글 인코딩 여부 검사		
-		if(CATCodeMgr::_Inst->m_bEncodeKorean 
-			&& 0x88 <= (BYTE)chArray[0] && (BYTE)chArray[0] <= 0xEE
+		if(CATCodeMgr::_Inst->m_nEncodeKorean 
+			&& pcCharMap->IsEncodedText(chArray) /*0x88 <= (BYTE)chArray[0] && (BYTE)chArray[0] <= 0xEE*/
 			&& 0x00 != (BYTE)chArray[1])
 		{
 			chArray[2] = '\0';
 			char tmpbuf[10]  = {0,};
 
-			if( CCharacterMapper::DecodeJ2K(chArray, tmpbuf) )
+			if( pcCharMap->DecodeJ2K(chArray, tmpbuf) )
 			{
 				chArray[0] = tmpbuf[0];
 				chArray[1] = tmpbuf[1];
+				nCodePage = 949;
 			}
-
-		}  // end of if(CATCodeMgr::_Inst->m_bEncodeKorean)
+		}  // end of if(CATCodeMgr::_Inst->m_nEncodeKorean)
+		else if (!CATCodeMgr::_Inst->m_nEncodeKorean)
+			nCodePage = 949;
 	}
-	
 
 	wchar_t wchArray[10];
+	int k=0;
 
-	UINT nCodePage = 949;
-	if(0x80 < (BYTE)chArray[0] && (BYTE)chArray[0] < 0xA0) nCodePage = 932;		
+	/*
+	** m_nEncodeKorean 이 켜져있을때 DecodeJ2K 가 성공하면 코드페이지 949
+	** 혹은 m_nEncodeKorean 이 꺼져있으면 코드페이지 949
+	** 이외는 무조건 코드페이지 932 로 처리
+
+	//if(0x80 < (BYTE)chArray[0] && (BYTE)chArray[0] < 0xA0) nCodePage = 932;
+	if(0x80 < (BYTE)chArray[0] && (BYTE)chArray[0] < 0xA0)
+	{
+		nCodePage = 932;
+		//80~A0 범위에 있는 한글은 코드페이지 변경을 못하도록 예외 처리
+		while(ko_char_map[k])
+		{
+			if(ko_char_map[k] == *((WORD*)chArray))
+			{
+				nCodePage = 949;
+				break;
+			}
+
+			(BYTE)k++;
+		}
+	}
+	*/
+
 	MyMultiByteToWideChar(nCodePage, 0, chArray, sizeof(UINT), wchArray, 10 );
 	
 	DWORD dwRetVal = CATCodeMgr::_Inst->m_sTextFunc.pfnGetGlyphOutlineW(hdc, (UINT)wchArray[0], uFormat, lpgm, cbBuffer, lpvBuffer, lpmat2);
 	
 	// 폰트 복구
 	if(hOrigFont && CATCodeMgr::_Inst->m_nFontLoadLevel < 10) SelectObject(hdc, hOrigFont);
+
+	if (pcCharMap) delete pcCharMap;
 
 	return dwRetVal;
 }
@@ -1307,7 +1362,15 @@ BOOL __stdcall CATCodeMgr::NewTextOutA(
 	BOOL bRetVal = FALSE;
 	BOOL bDecoded = FALSE;
 	HFONT hOrigFont = NULL;
+	CCharacterMapper *pcCharMap = NULL;
 
+	if (CATCodeMgr::_Inst->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::_Inst->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 	if( CATCodeMgr::_Inst && CATCodeMgr::_Inst->m_bRunning && CATCodeMgr::_Inst->m_nFontLoadLevel >= 5 )
 	{
@@ -1332,16 +1395,44 @@ BOOL __stdcall CATCodeMgr::NewTextOutA(
 				tmpbuf[1] = lpString[a_idx+1];
 				tmpbuf[2] = '\0';
 
+				UINT nCodePage = 932;
+				
 				// 한글 인코딩 여부 검사		
-				//if(CATCodeMgr::_Inst->m_bEncodeKorean && 0xE0 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xFD )
-				if(CATCodeMgr::_Inst->m_bEncodeKorean && 0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE )
+				//if(CATCodeMgr::_Inst->m_nEncodeKorean && 0xE0 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xFD )
+				if(CATCodeMgr::_Inst->m_nEncodeKorean && pcCharMap->IsEncodedText(lpString+a_idx)/*0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE*/ )
 				{
-
-					CCharacterMapper::DecodeJ2K(&lpString[a_idx], tmpbuf);
+					if (pcCharMap->DecodeJ2K(&lpString[a_idx], tmpbuf))
+						nCodePage = 949;
 				}
+				else if (!CATCodeMgr::_Inst->m_nEncodeKorean)
+					nCodePage = 949;
 
-				UINT nCodePage = 949;
-				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;		
+				/*
+				** m_nEncodeKorean 이 켜져있을때 DecodeJ2K 가 성공하면 코드페이지 949
+				** 혹은 m_nEncodeKorean 이 꺼져있으면 코드페이지 949
+				** 이외는 무조건 코드페이지 932 로 처리
+
+				nCodePage = 949;
+				int k=0;
+
+				//if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;
+				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0)
+				{
+					nCodePage = 932;
+					//80~A0 범위에 있는 한글은 코드페이지 변경을 못하도록 예외 처리
+					while(ko_char_map[k])
+					{
+						if(ko_char_map[k] == *((WORD*)tmpbuf))
+						{
+							nCodePage = 949;
+							break;
+						}
+						
+						(BYTE)k++;
+					}
+				}
+				*/
+
 				MyMultiByteToWideChar(nCodePage, 0, tmpbuf, -1, &wchArray[w_idx], 2 );
 
 				a_idx += 2;
@@ -1370,6 +1461,8 @@ BOOL __stdcall CATCodeMgr::NewTextOutA(
 
 	// 폰트 복구
 	if(hOrigFont && CATCodeMgr::_Inst->m_nFontLoadLevel < 10) SelectObject(hdc, hOrigFont);
+	
+	if (pcCharMap) delete pcCharMap;
 
 	return bRetVal;
 }
@@ -1415,6 +1508,15 @@ BOOL __stdcall CATCodeMgr::NewExtTextOutA(
 	BOOL bRetVal = FALSE;
 	BOOL bDecoded = FALSE;
 	HFONT hOrigFont = NULL;
+	CCharacterMapper *pcCharMap = NULL;
+
+	if (CATCodeMgr::_Inst->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::_Inst->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 
 	if( CATCodeMgr::_Inst && CATCodeMgr::_Inst->m_bRunning && CATCodeMgr::_Inst->m_nFontLoadLevel >= 5 )
@@ -1441,18 +1543,52 @@ BOOL __stdcall CATCodeMgr::NewExtTextOutA(
 				tmpbuf[1] = lpString[a_idx+1];
 				tmpbuf[2] = '\0';
 
-				UINT nCodePage;
+				UINT nCodePage = 932;
 				// 한글 인코딩 여부 검사		
-				//if(CATCodeMgr::_Inst->m_bEncodeKorean && 0xE0 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xFD )
-				if(CATCodeMgr::_Inst->m_bEncodeKorean && 0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE )
+				//if(CATCodeMgr::_Inst->m_nEncodeKorean && 0xE0 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xFD )
+				/*if(CATCodeMgr::_Inst->m_nEncodeKorean && 0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE )
 				{
-					CCharacterMapper::DecodeJ2K(&lpString[a_idx], tmpbuf);
+					pcCharMap->DecodeJ2K(&lpString[a_idx], tmpbuf);
 					nCodePage = 949;
 				}
 				else
 				{
 					nCodePage = 932;
+				}*/
+
+				if(CATCodeMgr::_Inst->m_nEncodeKorean && pcCharMap->IsEncodedText(lpString+a_idx)/*0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE*/ )
+				{
+					if (pcCharMap->DecodeJ2K(&lpString[a_idx], tmpbuf))
+						nCodePage = 949;
 				}
+				else if (!CATCodeMgr::_Inst->m_nEncodeKorean)
+					nCodePage = 949;
+
+
+				/*
+				** m_nEncodeKorean 이 켜져있을때 DecodeJ2K 가 성공하면 코드페이지 949
+				** 혹은 m_nEncodeKorean 이 꺼져있으면 코드페이지 949
+				** 이외는 무조건 코드페이지 932 로 처리
+
+				nCodePage = 949;
+				int k=0;
+
+				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0)
+				{
+					nCodePage = 932;
+					//80~A0 범위에 있는 한글은 코드페이지 변경을 못하도록 예외 처리
+					while(ko_char_map[k])
+					{
+						if(ko_char_map[k] == *((WORD*)tmpbuf))
+						{
+							nCodePage = 949;
+							break;
+						}
+						
+						(BYTE)k++;
+					}
+				}
+				*/
 
 				//if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;		
 				MyMultiByteToWideChar(nCodePage, 0, tmpbuf, -1, &wchArray[w_idx], 2 );
@@ -1485,6 +1621,8 @@ BOOL __stdcall CATCodeMgr::NewExtTextOutA(
 
 	// 폰트 복구
 	if(hOrigFont && CATCodeMgr::_Inst->m_nFontLoadLevel < 10) SelectObject(hdc, hOrigFont);
+
+	if (pcCharMap) delete pcCharMap;
 
 	return bRetVal;
 
@@ -1526,7 +1664,15 @@ int __stdcall CATCodeMgr::NewDrawTextA(
 	BOOL bRetVal = FALSE;
 	BOOL bDecoded = FALSE;
 	HFONT hOrigFont = NULL;
+	CCharacterMapper *pcCharMap = NULL;
 
+	if (CATCodeMgr::_Inst->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::_Inst->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 	if( CATCodeMgr::_Inst && CATCodeMgr::_Inst->m_bRunning && CATCodeMgr::_Inst->m_nFontLoadLevel >= 5 )
 	{
@@ -1554,15 +1700,42 @@ int __stdcall CATCodeMgr::NewDrawTextA(
 				tmpbuf[1] = lpString[a_idx+1];
 				tmpbuf[2] = '\0';
 
+				UINT nCodePage = 932;
 				// 한글 인코딩 여부 검사		
-				if(CATCodeMgr::_Inst->m_bEncodeKorean && 0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE )
+				if(CATCodeMgr::_Inst->m_nEncodeKorean && pcCharMap->IsEncodedText(lpString+a_idx)/*0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE*/ )
 				{
-
-					CCharacterMapper::DecodeJ2K(&lpString[a_idx], tmpbuf);
+					if (pcCharMap->DecodeJ2K(&lpString[a_idx], tmpbuf))
+						nCodePage = 949;
 				}
+				else if (!CATCodeMgr::_Inst->m_nEncodeKorean)
+					nCodePage = 949;
 
-				UINT nCodePage = 949;
-				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;		
+				/*
+				** m_nEncodeKorean 이 켜져있을때 DecodeJ2K 가 성공하면 코드페이지 949
+				** 혹은 m_nEncodeKorean 이 꺼져있으면 코드페이지 949
+				** 이외는 무조건 코드페이지 932 로 처리
+
+				nCodePage = 949;
+				int k=0;
+
+				//if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;
+				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0)
+				{
+					nCodePage = 932;
+					//80~A0 범위에 있는 한글은 코드페이지 변경을 못하도록 예외 처리
+					while(ko_char_map[k])
+					{
+						if(ko_char_map[k] == *((WORD*)tmpbuf))
+						{
+							nCodePage = 949;
+							break;
+						}
+						
+						(BYTE)k++;
+					}
+				}
+				*/
+
 				MyMultiByteToWideChar(nCodePage, 0, tmpbuf, -1, &wchArray[w_idx], 2 );
 
 				a_idx += 2;
@@ -1592,6 +1765,8 @@ int __stdcall CATCodeMgr::NewDrawTextA(
 
 	// 폰트 복구
 	if(hOrigFont && CATCodeMgr::_Inst->m_nFontLoadLevel < 10) SelectObject(hDC, hOrigFont);
+
+	if (pcCharMap) delete pcCharMap;
 
 	return bRetVal;
 }
@@ -1634,7 +1809,15 @@ int __stdcall CATCodeMgr::NewDrawTextExA(
 	BOOL bRetVal = FALSE;
 	BOOL bDecoded = FALSE;
 	HFONT hOrigFont = NULL;
+	CCharacterMapper *pcCharMap = NULL;
 
+	if (CATCodeMgr::_Inst->m_nEncodeKorean)
+	{
+		if (CATCodeMgr::_Inst->m_nEncodeKorean == 2)
+			pcCharMap = new CCharacterMapper2;
+		else
+			pcCharMap = new CCharacterMapper;
+	}
 
 	if( CATCodeMgr::_Inst && CATCodeMgr::_Inst->m_bRunning && CATCodeMgr::_Inst->m_nFontLoadLevel >= 5 )
 	{
@@ -1660,15 +1843,41 @@ int __stdcall CATCodeMgr::NewDrawTextExA(
 				tmpbuf[1] = lpString[a_idx+1];
 				tmpbuf[2] = '\0';
 
+				UINT nCodePage = 932;
 				// 한글 인코딩 여부 검사		
-				if(CATCodeMgr::_Inst->m_bEncodeKorean && 0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE )
+				if(CATCodeMgr::_Inst->m_nEncodeKorean && pcCharMap->IsEncodedText(lpString+a_idx)/*0x88 <= (BYTE)lpString[a_idx] && (BYTE)lpString[a_idx] <= 0xEE*/ )
 				{
-
-					CCharacterMapper::DecodeJ2K(&lpString[a_idx], tmpbuf);
+					if (pcCharMap->DecodeJ2K(&lpString[a_idx], tmpbuf))
+						nCodePage = 949;
 				}
+				else if (!CATCodeMgr::_Inst->m_nEncodeKorean)
+					nCodePage = 949;
 
-				UINT nCodePage = 949;
-				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;		
+				/*
+				** m_nEncodeKorean 이 켜져있을때 DecodeJ2K 가 성공하면 코드페이지 949
+				** 혹은 m_nEncodeKorean 이 꺼져있으면 코드페이지 949
+				** 이외는 무조건 코드페이지 932 로 처리
+
+				nCodePage = 949;
+				int k=0;
+				//if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0) nCodePage = 932;		
+				if(0x80 < (BYTE)tmpbuf[0] && (BYTE)tmpbuf[0] < 0xA0)
+				{
+					nCodePage = 932;
+					//80~A0 범위에 있는 한글은 코드페이지 변경을 못하도록 예외 처리
+					while(ko_char_map[k])
+					{
+						if(ko_char_map[k] == *((WORD*)tmpbuf))
+						{
+							nCodePage = 949;
+							break;
+						}
+						
+						(BYTE)k++;
+					}
+				}
+				*/
+
 				MyMultiByteToWideChar(nCodePage, 0, tmpbuf, -1, &wchArray[w_idx], 2 );
 
 				a_idx += 2;
@@ -1699,6 +1908,8 @@ int __stdcall CATCodeMgr::NewDrawTextExA(
 
 	// 폰트 복구
 	if(hOrigFont && CATCodeMgr::_Inst->m_nFontLoadLevel < 10) SelectObject(hDC, hOrigFont);
+
+	if (pcCharMap) delete pcCharMap;
 
 	return bRetVal;
 }

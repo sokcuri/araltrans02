@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ATPlugin", "ATPlugin.vcproj", "{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_MFC|Win32 = Debug_MFC|Win32
+		Debug_noMFC|Win32 = Debug_noMFC|Win32
+		Release_MFC|Win32 = Release_MFC|Win32
+		Release_noMFC|Win32 = Release_noMFC|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Debug_MFC|Win32.ActiveCfg = Debug_MFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Debug_MFC|Win32.Build.0 = Debug_MFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Debug_noMFC|Win32.ActiveCfg = Debug_noMFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Debug_noMFC|Win32.Build.0 = Debug_noMFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Release_MFC|Win32.ActiveCfg = Release_MFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Release_MFC|Win32.Build.0 = Release_MFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Release_noMFC|Win32.ActiveCfg = Release_noMFC|Win32
+		{F9B15343-36F7-4A0E-90FB-1957ECB39E5D}.Release_noMFC|Win32.Build.0 = Release_noMFC|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

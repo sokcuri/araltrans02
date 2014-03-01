@@ -290,7 +290,7 @@ public:
 	BOOL				m_bFixedFontSize;
 	long				m_lFontSize;
 	CString				m_strFontFace;
-	BOOL				m_bEncodeKorean;
+	int					m_nEncodeKorean;
 	BOOL				m_bUITrans;
 	BOOL				m_bNoAslr;
 	INT					m_nHookType;

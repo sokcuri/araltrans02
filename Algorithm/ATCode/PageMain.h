@@ -37,6 +37,7 @@ public:
 	CEdit m_editFontDesc;
 public:
 	CButton m_chkEncodeKor;
+	int m_nEncodeKor;
 public:
 	afx_msg void OnBnClickedBtnFont();
 public:
@@ -86,4 +87,6 @@ public:
 	CButton m_chkComJP;
 	afx_msg void OnBnClickedChkComparejp();
 	afx_msg void OnBnClickedBtnHelp();
+	afx_msg void OnBnClickedRadioEncodekor1();
+	afx_msg void OnBnClickedRadioEncodekor2();
 };

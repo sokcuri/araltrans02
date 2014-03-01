@@ -74,8 +74,6 @@ BOOL CCharacterMapper::EncodeK2J(LPCSTR cszKorCode, LPSTR szJpnCode)
 		BYTE loByte = (dwKorTmp % 189) + 0x40;
 		dwKorTmp = MAKEWORD( loByte, hiByte );
 
-		TRACE("[ aral1 ] EncodeK2J : '%s'(%p) -> (%p) \n", cszKorCode, MAKEWORD(cszKorCode[1], cszKorCode[0]), dwKorTmp );
-
 		if( 0x889F <= dwKorTmp && dwKorTmp <= 0xEEEC )
 		{
 			szJpnCode[0] = HIBYTE(dwKorTmp);
@@ -120,8 +118,6 @@ BOOL CCharacterMapper::DecodeJ2K(LPCSTR cszJpnCode, LPSTR szKorCode)
 
 		szKorCode[0] = (char)( ((UINT_PTR)dwKorTmp/(UINT_PTR)0xA0) + (UINT_PTR)0xA0);
 		szKorCode[1] = (char)( ((UINT_PTR)dwKorTmp%(UINT_PTR)0xA0) + (UINT_PTR)0xA0);
-
-		TRACE("[ aral1 ] DecodeJ2K : (%p) -> (%p)'%s' \n", (UINT_PTR)(MAKEWORD(cszJpnCode[1], cszJpnCode[0])), (UINT_PTR)(MAKEWORD(szKorCode[1], szKorCode[0])), szKorCode);
 
 		for(int k=3;_MAP[k][0];k++)
 		{

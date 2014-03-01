@@ -44,7 +44,7 @@ LPCTSTR _M2W_LOAD_DESC[] = {
 
 
 CPageMain::CPageMain(CWnd* pParent /*=NULL*/)
-	: CDialog(CPageMain::IDD, pParent), m_pRootNode(NULL)
+	: CDialog(CPageMain::IDD, pParent), m_pRootNode(NULL), m_nEncodeKor(0)
 {
 
 }
@@ -96,6 +96,8 @@ BEGIN_MESSAGE_MAP(CPageMain, CDialog)
 	ON_BN_CLICKED(IDC_CHK_NOASLR, &CPageMain::OnBnClickedChkNoAslr)
 	ON_BN_CLICKED(IDC_CHK_COMPAREJP, &CPageMain::OnBnClickedChkComparejp)
 	ON_BN_CLICKED(IDC_BTN_HELP, &CPageMain::OnBnClickedBtnHelp)
+	ON_BN_CLICKED(IDC_RADIO_ENCODEKOR1, &CPageMain::OnBnClickedRadioEncodekor1)
+	ON_BN_CLICKED(IDC_RADIO_ENCODEKOR2, &CPageMain::OnBnClickedRadioEncodekor2)
 END_MESSAGE_MAP()
 
 
@@ -242,6 +244,27 @@ BOOL CPageMain::InitFromRootNode( COptionNode* pRootNode )
 			else if(strValue == _T("ENCODEKOR"))
 			{
 				m_chkEncodeKor.SetCheck(1);
+
+				if (pNode->GetChildCount())
+				{
+					COptionNode *pEncodeOptionNode = pNode->GetChild(0);
+					m_nEncodeKor = _ttoi(pEncodeOptionNode->GetValue().Trim());
+				}
+				else
+					m_nEncodeKor = 1;
+
+				CButton * pButton = (CButton *)(this->GetDlgItem(IDC_RADIO_ENCODEKOR2));
+				pButton->EnableWindow(TRUE);
+
+				if (m_nEncodeKor == 2)
+					pButton->SetCheck(1);
+
+				pButton = (CButton *)(this->GetDlgItem(IDC_RADIO_ENCODEKOR1));
+				pButton->EnableWindow(TRUE);
+
+				if (m_nEncodeKor != 2)
+					pButton->SetCheck(1);
+
 			}
 
 			// UITRANS 옵션
@@ -368,6 +391,24 @@ void CPageMain::OnBnClickedChkFixSize()
 void CPageMain::OnBnClickedChkEncodekor()
 {
 	SetChildNodeFromCheckbox(m_pRootNode, _T("ENCODEKOR"), m_chkEncodeKor);
+
+	if (m_chkEncodeKor.GetCheck())
+	{
+		GetDlgItem(IDC_RADIO_ENCODEKOR1)->EnableWindow(TRUE);
+		GetDlgItem(IDC_RADIO_ENCODEKOR2)->EnableWindow(TRUE);
+
+		TCHAR szOption[2]={NULL, };
+		szOption[0] = _T('0') + m_nEncodeKor;
+
+		COptionNode *pNode = m_pRootNode->GetChild(_T("ENCODEKOR"));
+		pNode = pNode->CreateChild();
+		pNode->SetValue(szOption);
+	}
+	else
+	{
+		GetDlgItem(IDC_RADIO_ENCODEKOR1)->EnableWindow(FALSE);
+		GetDlgItem(IDC_RADIO_ENCODEKOR2)->EnableWindow(FALSE);
+	}
 }
 
 
@@ -552,4 +593,34 @@ void CPageMain::OnBnClickedBtnHelp()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CString path = CRegistryMgr::RegRead(_T("HKEY_CURRENT_USER\\Software\\AralGood"), _T("AralTransHomeDir")) + _T("\\help.chm");
 	::ShellExecute(::GetDesktopWindow(), L"open", path , 0, 0, SW_SHOWDEFAULT);
+}
+
+void CPageMain::OnBnClickedRadioEncodekor1()
+{
+	m_nEncodeKor = 1;
+
+	COptionNode *pNode = m_pRootNode->GetChild(_T("ENCODEKOR"));
+
+	if (!pNode->GetChildCount())
+		pNode = pNode->CreateChild();
+	else
+		pNode = pNode->GetChild(0);
+
+	pNode->SetValue(_T("1"));
+
+}
+
+void CPageMain::OnBnClickedRadioEncodekor2()
+{
+	m_nEncodeKor = 2;
+
+	COptionNode *pNode = m_pRootNode->GetChild(_T("ENCODEKOR"));
+
+	if (!pNode->GetChildCount())
+		pNode = pNode->CreateChild();
+	else
+		pNode = pNode->GetChild(0);
+
+	pNode->SetValue(_T("2"));
+
 }
