@@ -63,8 +63,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2014,2,27,1
- PRODUCTVERSION 2014,2,27,1
+ FILEVERSION 2014,3,22,1
+ PRODUCTVERSION 2014,3,22,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -82,13 +82,13 @@ BEGIN
             VALUE "Comments", "http://www.aralgood.com"
             VALUE "CompanyName", "Aral Laboratory"
             VALUE "FileDescription", "ATCode plug-in"
-            VALUE "FileVersion", "2014, 2, 27, 1"
+            VALUE "FileVersion", "2014, 3, 22, 1"
             VALUE "InternalName", "ATCode.dll"
             VALUE "LegalCopyright", "Copyright (C) 2007 Aral Laboratory (http://www.aralgood.com)"
             VALUE "LegalTrademarks", "http://www.aralgood.com"
             VALUE "OriginalFilename", "ATCode.dll"
             VALUE "ProductName", "ATCode plug-in"
-            VALUE "ProductVersion", "2014, 2, 27, 1"
+            VALUE "ProductVersion", "2014, 3, 22, 1"
         END
     END
     BLOCK "VarFileInfo"

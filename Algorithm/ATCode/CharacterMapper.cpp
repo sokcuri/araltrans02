@@ -383,6 +383,30 @@ BOOL CCharacterMapper::IsEncodedText(LPCSTR cszCode)
 */
 
 WORD CCharacterMapper2::m_awCP932_Lead8586[2][188] = {NULL, };
+CRITICAL_SECTION *CCharacterMapper2::m_pCS = NULL;
+
+CCharacterMapper2::CCharacterMapper2()
+{
+	if (!m_pCS)
+	{
+		CRITICAL_SECTION *pCS = new CRITICAL_SECTION;
+		if (InterlockedCompareExchange((LONG *)&m_pCS, (LONG)pCS, NULL) == NULL)
+			InitializeCriticalSection(m_pCS);
+		else
+			delete pCS;
+	}
+}
+
+void CCharacterMapper2::ClearStaticMembers()
+{
+	CRITICAL_SECTION *pCS = (CRITICAL_SECTION *)InterlockedExchange((LONG *)&m_pCS, NULL);
+	if (pCS)
+	{
+		ZeroMemory(m_awCP932_Lead8586, sizeof(WORD)*2*188);
+		DeleteCriticalSection(pCS);
+		delete pCS;
+	}
+}
 
 BOOL CCharacterMapper2::EncodeK2J(LPCSTR cszKorCode, LPSTR szJpnCode)
 {
@@ -541,11 +565,153 @@ BOOL CCharacterMapper2::IsEncodedText(LPCSTR cszCode)
 	return FALSE;
 }
 
+BOOL CCharacterMapper2::StoreEncodedText(LPSTR __inout szText)
+{
+	int nLength, i;
+
+	m_cStringArray.clear();
+
+	string strResult;
+
+	string strEncodedKorean;
+	bool bIsKorean = false;
+
+	nLength = lstrlenA(szText);
+
+	for (i=0; i<nLength; i++)
+	{
+		if (IsEncodedText(szText+i))
+		{
+			// EncodeKor2 한글
+			if (bIsKorean == false)
+			{
+				// 첫번째 한글 글자
+				bIsKorean = true;
+			}
+			// 인코딩된 한글을 저장한다
+			strEncodedKorean+=szText[i];
+			i++;
+			if (i == nLength) break;
+			strEncodedKorean+=szText[i];
+		}
+		else
+		{
+			if (bIsKorean == true)
+			{
+				// 인코딩된 한글 끝
+				bIsKorean = false;
+
+				int nEncodedLength = strEncodedKorean.size();
+				char szEncode[3]={0,}, szDecode[3]={0,};
+				string strDecodedKorean;
+
+				// 디코드하고
+				for(int idx=0; idx < nEncodedLength; idx+=2)
+				{
+					szEncode[0]=strEncodedKorean[idx];
+					szEncode[1]=strEncodedKorean[idx+1];
+
+					DecodeJ2K(szEncode, szDecode);
+
+					strDecodedKorean += szDecode;
+				}
+
+				// 저장한 후 마크
+				m_cStringArray.push_back(strDecodedKorean);
+				strResult+=ENCODE_MARKER_STRING;
+				strEncodedKorean.clear();
+			}
+			if (IsDBCSLeadByteEx(932, (BYTE)szText[i]))
+			{
+				strResult+= szText[i];
+				i++;
+			}
+			if (i == nLength) break;
+			strResult+=szText[i];
+		}
+	}
+
+	if (bIsKorean)
+	{
+		// 문장 마지막이 한글 - 마지막 한글을 저장후 마크
+		int nEncodedLength = strEncodedKorean.size();
+		char szEncode[3]={0,}, szDecode[3]={0,};
+		string strDecodedKorean;
+
+		for(int idx=0; idx < nEncodedLength; idx+=2)
+		{
+			szEncode[0]=strEncodedKorean[idx];
+			szEncode[1]=strEncodedKorean[idx+1];
+
+			DecodeJ2K(szEncode, szDecode);
+
+			strDecodedKorean += szDecode;
+		}
+
+		m_cStringArray.push_back(strDecodedKorean);
+		strResult+=ENCODE_MARKER_STRING;
+	}
+
+	/*
+	// 인코딩된 한글 이외에 번역할 것이 없으면 번역 포기
+	nLength = strResult.size();
+	for(i=0; i<nLength; i++)
+	{
+		if ((BYTE)strResult[i] >= 0x80)
+			break;
+	}
+	if (i == nLength)
+		return FALSE;
+	*/
+
+	lstrcpyA(szText, strResult.c_str());
+
+	return TRUE;
+}
+BOOL CCharacterMapper2::RestoreDecodedText(LPSTR __inout szText)
+{
+	if (m_cStringArray.empty())
+	{
+		// 인코딩 치환할 것이 없음
+		return TRUE;
+	}
+
+	int idxStringId = 0;
+	int i, nLength = lstrlenA(szText);
+	string strResult;
+
+	for (i=0; i<nLength; i++)
+	{
+		if ( (nLength - i >= ENCODE_MARKER_LENGTH) && 
+			(CompareStringA(LOCALE_NEUTRAL, NULL, szText+i, ENCODE_MARKER_LENGTH, ENCODE_MARKER_STRING, ENCODE_MARKER_LENGTH) == CSTR_EQUAL) )
+		{
+			// 저장 마커를 찾았으니 치환
+			strResult+=m_cStringArray[idxStringId];
+			idxStringId++;
+			i+=ENCODE_MARKER_LENGTH;
+			if (i == nLength)
+				break;
+		}
+		strResult+=szText[i];
+	}
+/*
+	FILE *fp;
+	fp=fopen("d:\\charmap.ko.txt", "a");
+	fprintf(fp, "%s\n", strResult.c_str());
+	fclose(fp);
+*/
+	lstrcpyA(szText, strResult.c_str());
+
+	return TRUE;
+}
+
 BOOL CCharacterMapper2::GetUserDefinedJpnCode(const BYTE *cszKorCode, BYTE *szJpnCode)
 {
 	BOOL bRet = FALSE;
 	BYTE byLead, byTrail;
 	WORD wKorCode = *(WORD *)cszKorCode;
+
+	EnterCriticalSection(m_pCS);
 
 	for (byLead = 0; byLead < 2; byLead++)
 	{
@@ -566,6 +732,7 @@ BOOL CCharacterMapper2::GetUserDefinedJpnCode(const BYTE *cszKorCode, BYTE *szJp
 		if (bRet)
 			break;
 	}
+	LeaveCriticalSection(m_pCS);
 
 	if (bRet)
 	{

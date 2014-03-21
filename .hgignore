@@ -10,6 +10,9 @@ syntax: glob
 *.pch
 *.lib
 */Debug/*
+*/Release/*
+Debug/*
+Release/*
 *.ncb
 *.ilk
 *.idb

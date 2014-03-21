@@ -62,6 +62,7 @@ CATCodeMgr::~CATCodeMgr(void)
 {
 	DeleteCriticalSection(&m_csClipText);
 	Close();
+	CCharacterMapper2::ClearStaticMembers();
 	_Inst = NULL;
 }
 
